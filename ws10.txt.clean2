@@ -1,0 +1,40 @@
+Script started on 2021-11-30 22:47:04+00:00 [TERM="xterm" TTY="/dev/pts/0" COLUMNS="197" LINES="52"]
+
+I copied the amazon dataset to worksheet10 directory so the script can work properly. 
+]0;yehia@f6linuxA9: ~/worksheet10yehia@f6linuxA9:~/worksheet10$ cp ../amazon_reviews_us_Books_v1_02.tsv ./
+
+]0;yehia@f6linuxA9: ~/worksheet10yehia@f6linuxA9:~/worksheet10$ ls
+amazon_reviews_us_Books_v1_02.tsv  ws10.txt
+
+I used Windows PowerShell to copy numbers.py to the server: scp ".\CS 185C\Assignments and Worksheets\numbers.py" yehia@12.42.205.191:/home/yehia/worksheet10 
+
+]0;yehia@f6linuxA9: ~/worksheet10yehia@f6linuxA9:~/worksheet10$ ls
+amazon_reviews_us_Books_v1_02.tsv  numbers.py  ws10.txt
+ 
+]0;yehia@f6linuxA9: ~/worksheet10yehia@f6linuxA9:~/worksheet10$ time python3 numbers.py 
+min 0 max 15835 avg 9.33467921636312
+
+real	0m12.212s
+user	0m10.719s
+sys	0m1.013s
+ 
+]0;yehia@f6linuxA9: ~/worksheet10yehia@f6linuxA9:~/worksheet10$ vi numbers.sh
+#!/bin/bash
+cut -f9 amazon_reviews_us_Books_v1_02.tsv | sort -n | awk 'BEGIN{sum=0; count=0} {if (NR>1) {numbers[count++]=$0; sum+=$0}} END{print "min", numbers[0], "max", numbers[count-1],"avg", sum/count}'
+
+ 
+]0;yehia@f6linuxA9: ~/worksheet10yehia@f6linuxA9:~/worksheet10$ chmod 777 numbers.sh 
+]0;yehia@f6linuxA9: ~/worksheet10yehia@f6linuxA9:~/worksheet10$ time ./numbers.sh
+min 0 max 15835 avg 9.33468
+
+real	0m23.099s
+user	0m24.595s
+sys	0m1.080s
+
+]0;yehia@f6linuxA9: ~/worksheet10yehia@f6linuxA9:~/worksheet10$ history > cmds.log
+ 
+]0;yehia@f6linuxA9: ~/worksheet10yehia@f6linuxA9:~/worksheet10$ exit
+
+Script done on 2021-11-30 22:52:21+00:00 [COMMAND_EXIT_CODE="0"]
+
+The above results show that the Python program runs faster than the shell script. This may be due to the fact that Python uses its built-in methods that are more efficient.

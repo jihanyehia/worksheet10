@@ -1,0 +1,1000 @@
+ 1002  time parallel ./commonWords.sh {1} {2} ::: REVIEWS/R*.txt ::: twitter100000.csv
+ 1003  time parallel ./commonWords.sh {1} {2} ::: REVIEWS/R*.txt ::: training100000.csv
+ 1004  ls
+ 1005  time parallel ./commonWords.sh {1} {2} ::: REVIEWS/R*txt ::: training100000.csv
+ 1006  ls REVIEWS/
+ 1007  cat R38RXR8USISV94txt
+ 1008  cat REVIEWS/R38RXR8USISV94txt
+ 1009  head REVIEWS/R38RXR8USISV94txt
+ 1010  for f in REVIEWS/R*txt; do cat $f | sed '1d' |  awk '{for(i=1;i<=NF;++i){D[$i]++}}END{print $f; for(k in D)print k, D[k]}' | sort -k2nr | head -n 10 ; done
+ 1011  for f in REVIEWS/R*txt; do cat $f | sed '1d' |  awk '{for(i=1;i<=NF;++i){D[$i]++}}END{echo $f; for(k in D)print k, D[k]}' | sort -k2nr | head -n 10 ; done | head
+ 1012  for f in REVIEWS/R*txt; do echo $f; cat $f | sed '1d' |  awk '{for(i=1;i<=NF;++i){D[$i]++}}END{ for(k in D)print k, D[k]}' | sort -k2nr | head -n 10 ; done | head -n 20
+ 1013  cat REVIEWS/R109NJJ7M1WVSAtxt
+ 1014  mkdir REVIEWS2
+ 1015  cd REVIEWS
+ 1016  awk -F"\t" '{print $0 > $3".txt"}'  ../top100reviews
+ 1017  cd ..
+ 1018  cat REVIEWS/R109NJJ7M1WVSAtxt
+ 1019  head REVIEWS/R10XI57RK1Y3HJtxt
+ 1020  cd REVIEWS2
+ 1021  ls
+ 1022  awk -F"\t" '{print $0 > $3".txt"}'  ../top100reviews
+ 1023  ls
+ 1024  cat R109NJJ7M1WVSA.txt
+ 1025  rm R*txt
+ 1026  ls
+ 1027  awk -F"\t" '{print $14 > $3".txt"}'  ../top100reviews
+ 1028  ls
+ 1029  cat R109NJJ7M1WVSA.txt
+ 1030  vi lemmatization
+ 1031  vi sedfile
+ 1032  sed -i -f lemmatization R109NJJ7M1WVSA.txt
+ 1033  sed -i -f sedfile R109NJJ7M1WVSA.txt
+ 1034  cat R109NJJ7M1WVSA.txt
+ 1035  for f in REVIEWS/R*.txt; do sed -i -f lemmatization $f; done
+ 1036  for f in R*.txt; do sed -i -f lemmatization $f; done
+ 1037  for f in R*.txt; do sed -i -f sedfile $f; done
+ 1038  cd ..
+ 1039  head -n 1000 ../training*.csv > twitter1000.csv
+ 1040  head -n 1000 training*.csv > twitter1000.csv
+ 1041  for f in REVIEWS2/R*txt; do ./commonWords.sh $f twitter1000.csv; done
+ 1042  time parallel ./commonWords.sh {1} {2} ::: REVIEWS/R*txt ::: twitter1000.csv
+ 1043  time parallel ./commonWords.sh {1} {2} ::: REVIEWS2/R*txt ::: twitter1000.csv
+ 1044  cat REVIEWS2/R109NJJ7M1WVSA.txt
+ 1045  for f in REVIEWS/R*txt; do echo $f; cat $f | sed '1d' |  awk '{for(i=1;i<=NF;++i){D[$i]++}}END{for(k in D)print k, D[k]}' | sort -k2nr | head -n 10 ; done | head -n20
+ 1046  cut -d'"' -f12 twitter1000.csv > twitterbody
+ 1047  head twitterbody 
+ 1048  head twitter1000.csv 
+ 1049  sed -i '1 d' twitterbody 
+ 1050  head twitterbody 
+ 1051  sed -i -f lemmatization twitterbody
+ 1052  sed -i -f REVIEWS/lemmatization twitterbody
+ 1053  sed -i -f REVIEWS2/lemmatization twitterbody
+ 1054  sed -i -f REVIEWS2/sedfile twitterbody
+ 1055  rm REVIEWS2/R*.txt
+ 1056  ls REVIEWS2
+ 1057  cd REVIEWS2
+ 1058  awk -F"\t" '{print $14 > $3".txt"}'  ../top100reviews
+ 1059  ls
+ 1060  for f in R*.txt; do sed -i -f lemmatization $f; done
+ 1061  for f in R*.txt; do sed -i -f sedfile $f; done
+ 1062  time parallel ../commonWords.sh {1} {2} ::: R*txt ::: twitterbody
+ 1063  cd ..
+ 1064  time parallel ./commonWords.sh {1} {2} ::: REVIEWS2/R*txt ::: twitterbody
+ 1065  for f in REVIEWS2/R*txt; do echo $f; cat $f | sed '1d' |  awk '{for(i=1;i<=NF;++i){D[$i]++}}END{for(k in D)print k, D[k]}' | sort -k2nr | head -n 10 ; done | head -n20
+ 1066  for f in REVIEWS2/R*txt; do cat $f | sed '1d' |  awk '{for(i=1;i<=NF;++i){D[$i]++}}END{for(k in D)print k, D[k}' >> top10; done
+ 1067  for f in REVIEWS2/R*txt; do cat $f | sed '1d' |  awk '{for(i=1;i<=NF;++i){D[$i]++}}END{for(k in D)print k, D[k]}' >> top10; done
+ 1068  head top10
+ 1069  sort top10 | uniq-c | sort -nr -k2 | head -n10
+ 1070  sort top10 | uniq -c | sort -nr -k2 | head -n10
+ 1071  sort top10 | uniq | sort -nr -k2 | head -n10
+ 1072  sort -nr -k2 top10 | head -n10
+ 1073  sort -nr -k3 top10 | head -n10
+ 1074  sort -nr -k1 top10 | head -n10
+ 1075  sort -nr -k2 top10 | head -n10
+ 1076  tail -20 top10
+ 1077  sort top 10 | tail 20
+ 1078  sort top 10 | tail -20
+ 1079  sort top10 | tail -20
+ 1080  vi top10
+ 1081  sort --help
+ 1082  sort -k2 -t"	" -nr top10 | head -n10
+ 1083  sort -k2 -t"	" -nr top10
+ 1084  sort top10 | uniq -c | sort -k2 -t"	" -nr | head -n10
+ 1085  sort top10 | uniq -c | sort -k2 -t" " -nr | awk -F " " '{$(($4=$1*$3))}' | sort -k4 | head -n10
+ 1086  sort top10 | uniq -c | sort -k2 -t" " -nr | head -n10
+ 1087  sort top10 | uniq -c | sort -k2 -t" " -nr > top10sorted
+ 1088  awk -F " " '{$4=$1*$3}' top10sorted | sort -k4 -nr | head -n10
+ 1089  awk -F " " '{$4=$1*$3}' top10sorted 
+ 1090  awk -F " " '{$3=$1*$3}' top10sorted 
+ 1091  head top10sorted 
+ 1092  for f in REVIEWS2/R*txt; do cat $f | sed '1d' >> allTweets; done
+ 1093  wc -l allTweets 
+ 1094  for f in REVIEWS2/R*txt; do x+=`wc -l $f` ; done
+ 1095  for f in REVIEWS2/R*txt; do x+=`wc -l $f` ; done ; echo $x
+ 1096  for f in REVIEWS2/R*txt; do x=`wc -l $f | cut -f1` ; done ; echo $x
+ 1097  cut --help
+ 1098  for f in REVIEWS2/R*txt; do x=`wc -l $f | cut -d" " -f1` ; done ; echo $x
+ 1099  for f in REVIEWS2/R*txt; do x+=`wc -l $f | cut -d" " -f1` ; done ; echo $x
+ 1100  for f in REVIEWS2/R*txt; do $((x+=`wc -l $f | cut -d" " -f1` ; done ; echo $x
+ 1101  for f in REVIEWS2/R*txt; do x=`wc -l $f | cut -d" " -f1`; y=$((y+x)) ; done ; echo $y
+ 1102  wc -l allTweets 
+ 1103  sort allTweets | uniq > uniqTweets
+ 1104  wc -l uniqTweets 
+ 1105  awk '{for(i=1;i<=NF;++i){D[$i]++}}END{for(k in D)print k, D[k]}' uniqTweets | sort -k2nr | head -n 10
+ 1106  ls
+ 1107  rm -rf REVIEWS REVIEWS2
+ 1108  ls
+ 1109  vi a .out
+ 1110  vi a.out 
+ 1111  rm a.ls
+ 1112  ls
+ 1113  rm a.out a.txt allTweets b.txt commonWords.sh id.txt getoldestfiles.sh rec.sh top10 top10sorted twitter1000.csv twitter_review twitterbody uniqTweets 
+ 1114  ls
+ 1115  mkdir assignment4
+ 1116  cd assignment4
+ 1117  script a4.txt
+ 1118  cd ..
+ 1119  rm -rf assignment4
+ 1120  ls
+ 1121  rm testdata.manual.2009.06.14.csv training100000.csv training.1600000.processed.noemoticon.csv 
+ 1122  ls
+ 1123  rm -rf trainingandtestdata.zip 
+ 1124  ls
+ 1125  rm top100reviews 
+ 1126  head top100 
+ 1127  mkdir assignment4
+ 1128  cd assignment4
+ 1129  script a4.txt
+ 1130  cd assignment4
+ 1131  ls
+ 1132  rm a4.txt top100reviews 
+ 1133  sort -nr -t "	" -k9 ../amazon_reviews_us_Books_v1_02.tsv | head -n 100 > top100reviews
+ 1134  wc -l top100reviews 
+ 1135  exit
+ 1136  tmux 
+ 1137  exit
+ 1138  tmux -ls
+ 1139  tmux -l
+ 1140  tmux ls
+ 1141  tmux a
+ 1142  tmux -a
+ 1143  tmux a
+ 1144  time parallel -j 10 ./commonWords.sh {1} {2} ::: assignment4/REVIEWS2/R*txt ::: assignment4/twitterbody
+ 1145  cd assignment4
+ 1146  time parallel -j 10 ./commonWords.sh {1} {2} ::: REVIEWS/R*txt ::: twitterbody
+ 1147  time parallel -j 10 ./commonWords.sh {1} {2} ::: REVIEWS/R*txt ::: twitterbody1000
+ 1148  cd REVIEWS
+ 1149  ls
+ 1150  cat RVFJEZZ01QP58.txt
+ 1151  vi ../commonWords.sh 
+ 1152  cd ..
+ 1153  time parallel -j 10 ./commonWords.sh {1} {2} ::: REVIEWS/R*txt ::: twitterbody1000
+ 1154  grep REVIEWS twitterbody1000
+ 1155  grep ls twitterbody1000
+ 1156  grep mattycu twitterbody1000 
+ 1157  grep mattycu twitter1000.csv 
+ 1158  vi sedfile 
+ 1159  sed -i -f sedfile twitterbody1000 
+ 1160  time parallel -j 10 ./commonWords.sh {1} {2} ::: REVIEWS/R*txt ::: twitterbody1000
+ 1161  ls
+ 1162  mv top100reviews least100reviews ../
+ 1163  ls
+ 1164  cd ..
+ 1165  ls
+ 1166  rm -rf assignment4 trainingandtestdata.zip training.1600000.processed.noemoticon.csv testdata.manual.2009.06.14.csv 
+ 1167  ls
+ 1168  cd ..
+ 1169  wget http://cs.stanford.edu/people/alecmgo/trainingandtestdata.zip
+ 1170  unzip trainingandtestdata.zip 
+ 1171  ls
+ 1172  cd assignment4
+ 1173  mv ../top100reviews .
+ 1174  mv ../least100reviews .
+ 1175  ls
+ 1176  mkdir REVIEWS
+ 1177  mkdir REVIEWS_UNHELPFUL
+ 1178  cd REVIEWS
+ 1179  awk -F"\t" '{print $14 > $3".txt"}'  ../top100reviews
+ 1180  cd ../REVIEWS_UNHELPFUL
+ 1181  awk -F"\t" '{print $14 > $3".txt"}'  ../least100reviews
+ 1182  ls
+ 1183  cat RMCAXHTOM96IW.txt
+ 1184  cd ..
+ 1185  vi lemmatization
+ 1186  for f in REVIEWS/R*.txt; do sed -i -f lemmatization $f; done
+ 1187  for f in REVIEWS_UNHELPFUL/R*.txt; do sed -i -f lemmatization $f; done
+ 1188  cat RMCAXHTOM96IW.txt
+ 1189  cat REVIEWS_UNHELPFUL/RMCAXHTOM96IW.txt
+ 1190  vi sedfile
+ 1191  for f in REVIEWS/R*.txt; do sed -i -f sedfile $f; done
+ 1192  for f in REVIEWS_UNHELPFUL/R*.txt; do sed -i -f sedfile $f; done
+ 1193  cat REVIEWS_UNHELPFUL/RMCAXHTOM96IW.txt
+ 1194  vi commonWords.sh
+ 1195  chmod 777 commonWords.sh 
+ 1196  head -n 1000 ../training*.csv > twitter1000.csv
+ 1197  cut -d '"' -f12 twitter1000.csv > twitterbody1000
+ 1198  sed -i -f lemmatization twitterbody1000
+ 1199  sed -i -f sedfile twitterbody1000
+ 1200  time parallel -j 10 ./commonWords.sh {1} {2} ::: REVIEWS/R*txt ::: twitterbody1000
+ 1201  time parallel -j 10 ./commonWords.sh {1} {2} ::: REVIEWS_UNHELPFUL/R*txt ::: twitterbody1000
+ 1202  cat REVIEWS_UNHELPFUL/RMCAXHTOM96IW.txt
+ 1203  wc -l  REVIEWS_UNHELPFUL/RMCAXHTOM96IW.txt
+ 1204  cd REVIEWS
+ 1205  for f in R*txt; do cat $f | sed '1d' >> allTweets; done
+ 1206  sort allTweets | uniq > uniqTweets
+ 1207  awk '{for(i=1;i<=NF;++i){D[$i]++}}END{for(k in D)print k, D[k]}' uniqTweets | sort -k2nr | head -n 10
+ 1208  cd ../REVIEWS_UNHELPFUL/
+ 1209  for f in R*txt; do cat $f | sed '1d' >> allTweets; done
+ 1210  sort allTweets | uniq > uniqTweets
+ 1211  awk '{for(i=1;i<=NF;++i){D[$i]++}}END{for(k in D)print k, D[k]}' uniqTweets | sort -k2nr | head -n 10
+ 1212  ls
+ 1213  ls ../REVIEWS
+ 1214  head ../REVIEWS/R109NJJ7M1WVSA.txt
+ 1215  head ../least100reviews 
+ 1216  cat RWVBCDA9HHJ1T
+ 1217  cat RWVBCDA9HHJ1T.txt 
+ 1218  mkdir assignment4
+ 1219  cd assignment4
+ 1220  script a4.txt
+ 1221  vi commonWords.sh 
+ 1222  awk '{echo $0; comm -12 <(tr " " "\n" < REVIEWS_UNHELPFUL/RWVBCDA9HHJ1T | sort) <(echo $0 | tr " " "\n" | sort) | wc -l}' twitterbody1000 
+ 1223  awk '{echo $0; echo `comm -12 <(tr " " "\n" < REVIEWS_UNHELPFUL/RWVBCDA9HHJ1T | sort) <(echo $0 | tr " " "\n" | sort) | wc -l`}' twitterbody1000 
+ 1224  for line in twitterbody; do echo $line; echo `comm -12 <(tr " " "\n" < REVIEWS_UNHELPFUL/RWVBCDA9HHJ1T | sort) <(echo $line | tr " " "\n" | sort) | wc -l`; done 
+ 1225  for line in twitterbody; do echo $line; echo `comm -12 <(tr " " "\n" < REVIEWS_UNHELPFUL/RWVBCDA9HHJ1T.txt | sort) <(echo $line | tr " " "\n" | sort) | wc -l`; done 
+ 1226  for line in twitterbody1000; do echo $line; echo `comm -12 <(tr " " "\n" < REVIEWS_UNHELPFUL/RWVBCDA9HHJ1T.txt | sort) <(echo $line | tr " " "\n" | sort) | wc -l`; done 
+ 1227  ls
+ 1228  awk -F',' '{print $0 > $2".txt"}' twitter1000.csv 
+ 1229  ls
+ 1230  cat "1467950217".txt
+ 1231  cat '"1467950217".txt' 
+ 1232  for f in \'*; do cut -d '"' -f12 $f > $f".body"; done 
+ 1233  for f in '*; do cut -d '"' -f12 $f > $f".body"; done 
+ 1234   
+ 1235  cat '"1467950217".txt'.body 
+ 1236  ls
+ 1237  cat '*.txt.body' 
+ 1238  for f in \'*; do cut -d '"' -f12 $f >> $f; done 
+ 1239  ls
+ 1240  cat "1467927016".txt
+ 1241  cat '"1467927016".txt'
+ 1242  for f in '*'; do cut -d '"' -f12 $f >> $f; done 
+ 1243  sed -i 's/"//g' twitter1000.csv 
+ 1244  head twitter1000.csv 
+ 1245  awk -F',' '{print $0 > $2".txt"}' twitter1000.csv 
+ 1246  ls
+ 1247  cat 1467861413.txt
+ 1248  for f in 1*.txt; do sed 's/,/\t/g' $f; done
+ 1249  for f in 1*.txt; do sed -i 's/,/\t/g' $f; done
+ 1250  cat 1467861413.txt
+ 1251  for f in 1*.txt; do cut -f6 $f >> $f; done
+ 1252  cat 1467861413.txt
+ 1253  for f in 1*.txt; do sed -i '1d' $ f; done
+ 1254  for f in 1*.txt; do sed -i '1 d' $ f; done
+ 1255  for f in 1*.txt; do sed -i '1 d' $f; done
+ 1256  cat 1467861413.txt
+ 1257  history
+ 1258  rm 1*
+ 1259  ls
+ 1260  rm '*
+ 1261  rm/'*
+ 1262  rm\'*
+ 1263  rm \'*
+ 1264  ls
+ 1265  rm \'*\'
+ 1266  rm *.txt*
+ 1267  ls
+ 1268  awk -F',' '{print $0 > $2".txt"}' twitter1000.csv
+ 1269  for f in 1*.txt; do sed -i 's/,/\t/g' $f | cut -f6 $f >> $f | sed -i '1 d' $f; done
+ 1270  cat 1467861413.txt
+ 1271  for f in 1*.txt; do sed -i 's/,/\t/g' $f ; cut -f6 $f >> $f ; sed -i '1 d' $f; done
+ 1272  cat 1467861413.txt
+ 1273  for f in 1*.txt; do sed -i -f lemmatization $f; sed -i -f sedfile $f; done
+ 1274  cat 1467861413.txt
+ 1275  vi commonWords.sh 
+ 1276  time parallel -j 10 ./commonWords.sh {1} {2} ::: REVIEWS/R*txt ::: 1*.txt
+ 1277  ls REVIEWS
+ 1278  cat RVFJEZZ01QP58.txt
+ 1279  cat REVIEWSRVFJEZZ01QP58.txt
+ 1280  cat REVIEWS/RVFJEZZ01QP58.txt
+ 1281  grep 1*.txt REVIEWS/RVFJEZZ01QP58.txt | wc -l
+ 1282  grep -e 1*.txt REVIEWS/RVFJEZZ01QP58.txt | wc -l
+ 1283  egrep 1*.txt REVIEWS/RVFJEZZ01QP58.txt | wc -l
+ 1284  grep -h
+ 1285  grep --help
+ 1286  grep -E -c  1*.txt REVIEWS/RVFJEZZ01QP58.txt
+ 1287  grep -E 1*.txt REVIEWS/RVFJEZZ01QP58.txt | wc -l
+ 1288  grep -E 1*.txt REVIEWS/RVFJEZZ01QP58.txt
+ 1289  cat REVIEWS/RVFJEZZ01QP58.txt | grep -E 1*.txt | wc -l
+ 1290  tail REVIEWS/RVFJEZZ01QP58.txt 
+ 1291  cat REVIEWS/RVFJEZZ01QP58.txt | grep -E 1*\.txt | wc -l
+ 1292  cat REVIEWS/RVFJEZZ01QP58.txt | grep -E 14* | wc -l
+ 1293  cat REVIEWS/RVFJEZZ01QP58.txt | grep 14 | wc -l
+ 1294  cat REVIEWS/RVFJEZZ01QP58.txt | grep txt | wc -l
+ 1295  vi commonWords.sh 
+ 1296  mkdir REVIEWS2
+ 1297  cd REVIEWS2
+ 1298  awk -F"\t" '{print $14 > $3".txt"}'  ../top100reviews
+ 1299  for f in REVIEWS2/R*.txt; do sed -i -f lemmatization $f; done
+ 1300  cd ..
+ 1301  for f in REVIEWS2/R*.txt; do sed -i -f lemmatization $f; done
+ 1302  for f in REVIEWS2/R*.txt; do sed -i -f sedfile $f; done
+ 1303  ls
+ 1304  time parallel -j 10 ./commonWords.sh {1} {2} ::: REVIEWS2/R*txt ::: 1*.txt
+ 1305  vi commonWords.sh 
+ 1306  time parallel -j 10 ./commonWords.sh {1} {2} ::: REVIEWS2/R*txt ::: 1*.txt
+ 1307  cat REVIEWS2/RVFJEZZ01QP58.txt
+ 1308  cat REVIEWS2/RVFJEZZ01QP58.txt | wc -l
+ 1309  vi commonWords.sh 
+ 1310  for f in REVIEWS2/*; do sed -i '2,$ d' REVIEWS2/$f; done
+ 1311  for f in REVIEWS2/*.txt; do sed -i '2,$ d' REVIEWS2/$f; done
+ 1312  for f in REVIEWS2/*.txt; do sed -i '2,$ d' $f; done
+ 1313  cat REVIEWS2/RVFJEZZ01QP58.txt
+ 1314  time parallel -j 10 ./commonWords.sh {1} {2} ::: REVIEWS2/R*txt ::: 1*.txt
+ 1315  cat REVIEWS2/RVFJEZZ01QP58.txt
+ 1316  cat 1467889231.txt 1467947557.txt 1468006169.txt
+ 1317  cat 14*
+ 1318  cat twitter1000.csv 
+ 1319  rm 14*
+ 1320  ls
+ 1321  awk -F',' '{print $0 > $2".txt"}' twitter1000.csv
+ 1322  for f in 1*.txt; do sed -i 's/,/\t/5' $f ; cut -f2 $f >> $f ; sed -i '1 d' $f; sed -i -f lemmatization $f; sed -i -f sedfile $f; done
+ 1323  cat 14*
+ 1324  ls -l
+ 1325  comm -12 <(cat twitterbody1000 | sort) <(`cat 14*` | sort) | wc -l
+ 1326  comm -12 <`sort twitterbody1000` <(`cat 14*` | sort) | wc -l
+ 1327  time parallel -j 10 ./commonWords.sh {1} {2} ::: REVIEWS2/R*txt ::: 1*.txt
+ 1328  cat REVIEWS2/RVFJEZZ01QP58.txt
+ 1329  cat REVIEWS2/RVFJEZZ01QP58.txt | wc -l
+ 1330  for f in REVIEWS2/*; do sed -i '2,$ d' REVIEWS2/$f; done
+ 1331  for f in REVIEWS2/*; do sed -i '2,$ d' $f; done
+ 1332  time parallel -j 10 ./commonWords.sh {1} {2} ::: REVIEWS2/R*txt ::: 1*.txt
+ 1333  cat REVIEWS2/RVFJEZZ01QP58.txt | wc -l
+ 1334  cat REVIEWS2/RVFJEZZ01QP58.txt
+ 1335  vi commonWords.sh 
+ 1336  if [ `comm -12 <(tr " " "\n" < $1 | sort) <(tr " " "\n" < $2 | sort) | wc -l` -ge 2 ];          then                   echo `cat $2` >> $1; fi
+ 1337  comm -12 <(tr " " "\n" < REVIEWS2/RVFJEZZ01QP58.txt | sort) <(tr " " "\n" < | sort) | wc -l
+ 1338  cd ..
+ 1339  wget http://cs.stanford.edu/people/alecmgo/trainingandtestdata.zip
+ 1340  unzip trainingandtestdata.zip 
+ 1341  ls
+ 1342  cd assignment4
+ 1343  mv ../top100reviews .
+ 1344  mv ../least100reviews .
+ 1345  ls
+ 1346  mkdir REVIEWS
+ 1347  mkdir REVIEWS_UNHELPFUL
+ 1348  cd REVIEWS
+ 1349  awk -F"\t" '{print $14 > $3".txt"}'  ../top100reviews
+ 1350  cd ../REVIEWS_UNHELPFUL
+ 1351  awk -F"\t" '{print $14 > $3".txt"}'  ../least100reviews
+ 1352  ls
+ 1353  cd ..
+ 1354  vi lemmatization
+ 1355  for f in REVIEWS/R*.txt; do sed -i -f lemmatization $f; done
+ 1356  for f in REVIEWS_UNHELPFUL/R*.txt; do sed -i -f lemmatization $f; done
+ 1357  cat REVIEWS_UNHELPFUL/R2STQOSORN09R0.txt
+ 1358  vi sedfile
+ 1359  for f in REVIEWS/R*.txt; do sed -i -f sedfile $f; done
+ 1360  for f in REVIEWS_UNHELPFUL/R*.txt; do sed -i -f sedfile $f; done
+ 1361  cat REVIEWS_UNHELPFUL/R2STQOSORN09R0.txt
+ 1362  vi commonWords.sh
+ 1363  chmod 777 commonWords.sh 
+ 1364  cd ..
+ 1365  head -n 1000 ../training*.csv > twitter1000.csv
+ 1366  cd assignment4
+ 1367  head -n 1000 ../training*.csv > twitter1000.csv
+ 1368  sed -e -i 's/"//g' -e -i 's/,/\t/5'   twitter1000.csv
+ 1369  sed -i 's/"//g' twitter1000.csv
+ 1370  sed -i 's/,/\t/5' twitter1000.csv
+ 1371  cut -f2 twitter1000.csv > twitterbody1000 sed  -i -f lemmatization twitterbody1000
+ 1372  sed -i -f sedfile twitterbody1000
+ 1373  cut -f2 twitter1000.csv > twitterbody1000
+ 1374  sed  -i -f lemmatization twitterbody1000
+ 1375  sed -i -f sedfile twitterbody1000
+ 1376  head -n 3 twitterbody1000 
+ 1377  time parallel -j 2 ./commonWords.sh {1} twitterbody1000 ::: REVIEWS/R*txt
+ 1378  time parallel -j 2 ./commonWords.sh {1} twitterbody1000 ::: REVIEWS_UNHELPFUL/R*txt
+ 1379  ls REVIEWS
+ 1380  head REVIEWS/RVFJEZZ01QP58.txt.tweets
+ 1381  ls REVIEWS_UNHELPFUL/
+ 1382  head REVIEWS_UNHELPFUL/RZV8MZHXYM864.txt.tweets
+ 1383  cd REVIEWS
+ 1384  for f in R*txt.tweets; do cat $f | sed '1d' >> allTweets; done
+ 1385  sort allTweets | uniq > uniqTweets
+ 1386  awk '{for(i=1;i<=NF;++i){D[$i]++}}END{for(k in D)print k, D[k]}' uniqTweets | sort -k2nr | head -n 10
+ 1387  cd ../REVIEWS_
+ 1388  cd ../REVIEWS_UNHELPFUL/
+ 1389  for f in R*txt.tweets; do cat $f | sed '1d' >> allTweets; done
+ 1390  sort allTweets | uniq > uniqTweets
+ 1391  awk '{for(i=1;i<=NF;++i){D[$i]++}}END{for(k in D)print k, D[k]}' uniqTweets | sort -k2nr | head -n 10
+ 1392  mkdir assignment4
+ 1393  cd assignment4
+ 1394  script a4.txt
+ 1395  vi commonWords.sh 
+ 1396  awk '{echo $0; comm -12 <(tr " " "\n" < REVIEWS_UNHELPFUL/RWVBCDA9HHJ1T | sort) <(echo $0 | tr " " "\n" | sort) | wc -l}' twitterbody1000 
+ 1397  awk '{echo $0; echo `comm -12 <(tr " " "\n" < REVIEWS_UNHELPFUL/RWVBCDA9HHJ1T | sort) <(echo $0 | tr " " "\n" | sort) | wc -l`}' twitterbody1000 
+ 1398  for line in twitterbody; do echo $line; echo `comm -12 <(tr " " "\n" < REVIEWS_UNHELPFUL/RWVBCDA9HHJ1T | sort) <(echo $line | tr " " "\n" | sort) | wc -l`; done 
+ 1399  for line in twitterbody; do echo $line; echo `comm -12 <(tr " " "\n" < REVIEWS_UNHELPFUL/RWVBCDA9HHJ1T.txt | sort) <(echo $line | tr " " "\n" | sort) | wc -l`; done 
+ 1400  for line in twitterbody1000; do echo $line; echo `comm -12 <(tr " " "\n" < REVIEWS_UNHELPFUL/RWVBCDA9HHJ1T.txt | sort) <(echo $line | tr " " "\n" | sort) | wc -l`; done 
+ 1401  ls
+ 1402  awk -F',' '{print $0 > $2".txt"}' twitter1000.csv 
+ 1403  ls
+ 1404  cat "1467950217".txt
+ 1405  cat '"1467950217".txt' 
+ 1406  for f in \'*; do cut -d '"' -f12 $f > $f".body"; done 
+ 1407  for f in '*; do cut -d '"' -f12 $f > $f".body"; done 
+ 1408   
+ 1409  cat '"1467950217".txt'.body 
+ 1410  ls
+ 1411  cat '*.txt.body' 
+ 1412  for f in \'*; do cut -d '"' -f12 $f >> $f; done 
+ 1413  ls
+ 1414  cat "1467927016".txt
+ 1415  cat '"1467927016".txt'
+ 1416  for f in '*'; do cut -d '"' -f12 $f >> $f; done 
+ 1417  sed -i 's/"//g' twitter1000.csv 
+ 1418  head twitter1000.csv 
+ 1419  awk -F',' '{print $0 > $2".txt"}' twitter1000.csv 
+ 1420  ls
+ 1421  cat 1467861413.txt
+ 1422  for f in 1*.txt; do sed 's/,/\t/g' $f; done
+ 1423  for f in 1*.txt; do sed -i 's/,/\t/g' $f; done
+ 1424  cat 1467861413.txt
+ 1425  for f in 1*.txt; do cut -f6 $f >> $f; done
+ 1426  cat 1467861413.txt
+ 1427  for f in 1*.txt; do sed -i '1d' $ f; done
+ 1428  for f in 1*.txt; do sed -i '1 d' $ f; done
+ 1429  for f in 1*.txt; do sed -i '1 d' $f; done
+ 1430  cat 1467861413.txt
+ 1431  history
+ 1432  rm 1*
+ 1433  ls
+ 1434  rm '*
+ 1435  rm/'*
+ 1436  rm\'*
+ 1437  rm \'*
+ 1438  ls
+ 1439  rm \'*\'
+ 1440  rm *.txt*
+ 1441  ls
+ 1442  awk -F',' '{print $0 > $2".txt"}' twitter1000.csv
+ 1443  for f in 1*.txt; do sed -i 's/,/\t/g' $f | cut -f6 $f >> $f | sed -i '1 d' $f; done
+ 1444  cat 1467861413.txt
+ 1445  for f in 1*.txt; do sed -i 's/,/\t/g' $f ; cut -f6 $f >> $f ; sed -i '1 d' $f; done
+ 1446  cat 1467861413.txt
+ 1447  for f in 1*.txt; do sed -i -f lemmatization $f; sed -i -f sedfile $f; done
+ 1448  cat 1467861413.txt
+ 1449  vi commonWords.sh 
+ 1450  time parallel -j 10 ./commonWords.sh {1} {2} ::: REVIEWS/R*txt ::: 1*.txt
+ 1451  ls REVIEWS
+ 1452  cat RVFJEZZ01QP58.txt
+ 1453  cat REVIEWSRVFJEZZ01QP58.txt
+ 1454  cat REVIEWS/RVFJEZZ01QP58.txt
+ 1455  grep 1*.txt REVIEWS/RVFJEZZ01QP58.txt | wc -l
+ 1456  grep -e 1*.txt REVIEWS/RVFJEZZ01QP58.txt | wc -l
+ 1457  egrep 1*.txt REVIEWS/RVFJEZZ01QP58.txt | wc -l
+ 1458  grep -h
+ 1459  grep --help
+ 1460  grep -E -c  1*.txt REVIEWS/RVFJEZZ01QP58.txt
+ 1461  grep -E 1*.txt REVIEWS/RVFJEZZ01QP58.txt | wc -l
+ 1462  grep -E 1*.txt REVIEWS/RVFJEZZ01QP58.txt
+ 1463  cat REVIEWS/RVFJEZZ01QP58.txt | grep -E 1*.txt | wc -l
+ 1464  tail REVIEWS/RVFJEZZ01QP58.txt 
+ 1465  cat REVIEWS/RVFJEZZ01QP58.txt | grep -E 1*\.txt | wc -l
+ 1466  cat REVIEWS/RVFJEZZ01QP58.txt | grep -E 14* | wc -l
+ 1467  cat REVIEWS/RVFJEZZ01QP58.txt | grep 14 | wc -l
+ 1468  cat REVIEWS/RVFJEZZ01QP58.txt | grep txt | wc -l
+ 1469  vi commonWords.sh 
+ 1470  mkdir REVIEWS2
+ 1471  cd REVIEWS2
+ 1472  awk -F"\t" '{print $14 > $3".txt"}'  ../top100reviews
+ 1473  for f in REVIEWS2/R*.txt; do sed -i -f lemmatization $f; done
+ 1474  cd ..
+ 1475  for f in REVIEWS2/R*.txt; do sed -i -f lemmatization $f; done
+ 1476  for f in REVIEWS2/R*.txt; do sed -i -f sedfile $f; done
+ 1477  ls
+ 1478  time parallel -j 10 ./commonWords.sh {1} {2} ::: REVIEWS2/R*txt ::: 1*.txt
+ 1479  vi commonWords.sh 
+ 1480  time parallel -j 10 ./commonWords.sh {1} {2} ::: REVIEWS2/R*txt ::: 1*.txt
+ 1481  cat REVIEWS2/RVFJEZZ01QP58.txt
+ 1482  cat REVIEWS2/RVFJEZZ01QP58.txt | wc -l
+ 1483  vi commonWords.sh 
+ 1484  for f in REVIEWS2/*; do sed -i '2,$ d' REVIEWS2/$f; done
+ 1485  for f in REVIEWS2/*.txt; do sed -i '2,$ d' REVIEWS2/$f; done
+ 1486  for f in REVIEWS2/*.txt; do sed -i '2,$ d' $f; done
+ 1487  cat REVIEWS2/RVFJEZZ01QP58.txt
+ 1488  time parallel -j 10 ./commonWords.sh {1} {2} ::: REVIEWS2/R*txt ::: 1*.txt
+ 1489  cat REVIEWS2/RVFJEZZ01QP58.txt
+ 1490  cat 1467889231.txt 1467947557.txt 1468006169.txt
+ 1491  cat 14*
+ 1492  cat twitter1000.csv 
+ 1493  rm 14*
+ 1494  ls
+ 1495  awk -F',' '{print $0 > $2".txt"}' twitter1000.csv
+ 1496  for f in 1*.txt; do sed -i 's/,/\t/5' $f ; cut -f2 $f >> $f ; sed -i '1 d' $f; sed -i -f lemmatization $f; sed -i -f sedfile $f; done
+ 1497  cat 14*
+ 1498  ls -l
+ 1499  comm -12 <(cat twitterbody1000 | sort) <(`cat 14*` | sort) | wc -l
+ 1500  comm -12 <`sort twitterbody1000` <(`cat 14*` | sort) | wc -l
+ 1501  time parallel -j 10 ./commonWords.sh {1} {2} ::: REVIEWS2/R*txt ::: 1*.txt
+ 1502  cat REVIEWS2/RVFJEZZ01QP58.txt
+ 1503  cat REVIEWS2/RVFJEZZ01QP58.txt | wc -l
+ 1504  for f in REVIEWS2/*; do sed -i '2,$ d' REVIEWS2/$f; done
+ 1505  for f in REVIEWS2/*; do sed -i '2,$ d' $f; done
+ 1506  time parallel -j 10 ./commonWords.sh {1} {2} ::: REVIEWS2/R*txt ::: 1*.txt
+ 1507  cat REVIEWS2/RVFJEZZ01QP58.txt | wc -l
+ 1508  cat REVIEWS2/RVFJEZZ01QP58.txt
+ 1509  vi commonWords.sh 
+ 1510  if [ `comm -12 <(tr " " "\n" < $1 | sort) <(tr " " "\n" < $2 | sort) | wc -l` -ge 2 ];          then                   echo `cat $2` >> $1; fi
+ 1511  comm -12 <(tr " " "\n" < REVIEWS2/RVFJEZZ01QP58.txt | sort) <(tr " " "\n" < | sort) | wc -l
+ 1512  ls
+ 1513  comm -12 <(tr " " "\n" < REVIEWS2/RVFJEZZ01QP58.txt | sort) <(tr " " "\n" <1467810369.txt | sort) | wc -l
+ 1514  comm -12 <(tr " " "\n" < REVIEWS2/RVFJEZZ01QP58.txt | sort) <(tr " " "\n" <1467810369.txt | sort)
+ 1515  head -n1 REVIEWS2/RVFJEZZ01QP58.txt
+ 1516  tr " " "\n" < REVIEWS2/RVFJEZZ01QP58.txt
+ 1517  for f in REVIEWS2/*; do sed -i '2,$ d' REVIEWS2/$f; done
+ 1518  for f in REVIEWS2/*; do sed -i '2,$ d' $f; done
+ 1519  tr " " "\n" < REVIEWS2/RVFJEZZ01QP58.txt
+ 1520  tr " " "\n" <1467810369.txt
+ 1521  comm -12 <(tr " " "\n" < REVIEWS2/RVFJEZZ01QP58.txt | sort) <(tr " " "\n" <1467810369.txt | sort)
+ 1522  comm --help
+ 1523  tr " " "\n" <1467810369.txt
+ 1524  cat 1467810369.txt
+ 1525  tr -s " " "\n" <1467810369.txt
+ 1526  comm -12 <(tr -s " " "\n" < REVIEWS2/RVFJEZZ01QP58.txt | sort) <(tr -s " " "\n" <1467810369.txt | sort)
+ 1527  ls 
+ 1528  comm -12 <(tr -s " " "\n" < REVIEWS2/RVFJEZZ01QP58.txt | sort) <(tr -s " " "\n" <1467982077.txt | sort)
+ 1529  cd REVIEWS2
+ 1530  ls
+ 1531  cat R22D7C0DULO855.txt
+ 1532  time parallel -j 10 ./commonWords.sh {1} {2} ::: REVIEWS2/R*txt ::: 1*.txt
+ 1533  cd ..
+ 1534  time parallel -j 10 ./commonWords.sh {1} {2} ::: REVIEWS2/R*txt ::: 1*.txt
+ 1535  for f in REVIEWS2/*; do sed -i '2,$ d' $f; done
+ 1536  vi commonWords.sh 
+ 1537  time parallel -j 10 ./commonWords.sh {1} {2} ::: REVIEWS2/R*txt ::: 1*.txt
+ 1538  cat R22D7C0DULO855.txt
+ 1539  cat REVIEWS2/R22D7C0DULO855.txt
+ 1540  ls REVIEWS2
+ 1541  cat R109NJJ7M1WVSA.txt
+ 1542  cat REVIEWS2/R109NJJ7M1WVSA.txt
+ 1543  for f in REVIEWS2/*; do sed -i '2,$ d' $f; done
+ 1544  time parallel -j 10 ./commonWords.sh {1} {2} ::: REVIEWS2/Okay   know  plot    sense  rehash    book  generat  great deal  heat  very little light lately  been bann  some school district  attack  racist garbage    review  addres  question:   Huckleberry Finn   fact  racist bookThe charge  racism stem   liberal      word  describ    Some black parent  student  charg    book  humiliat  demean  AfricanAmerican   therefore  unfit   taught  school      been  racist  backlash   classroom  think    fault   reader rather    book Huckleberry Finn    Missouri    1830    true   time    narrator   13 year   semiliterate   refer  black   Nword because   never  heard  call anyth     been brought    black   slave  property  someth   human      know    their flight  freedom  escap slavery  Huck escap   drunken abusive father   transform   Huck realize       human      father  misse  children  warm  sensitive generou compassionate individual   Huck epiphany arrive      make  decision     rescue      captur  held  return  slavery     culture   born into  steal  slave   lowest  crime   perpetrator  condemn   eternal damnation     decision  risk hell  save   save    soul   Huck  risen above  upbring      friend      fellow human  Another charge  racism     Twain suppo stereotyp      portray  Twain   hardly   ignorant shuffl Uncle     prevalent  Gone    Wind  book  abundantly deserve  charge  racism       uneducat    nobody fool   dignity  nobility    face  adversity  evident throughout  book     Huckleberry Finn  racist book        time     time    well portray  black   sensitivity  dignity  sympathy    shallow ignorant reader      caricature   object  derision  their problem   Hopefully    mature enough  their lifetime  appreciate  book      greatest classic  American literature        wonder   reviewer  black Judy Linde uneducat    nobody fool   dignity  nobility    face  adversity  evident throughout  book     Huckleberry Finn  racist book        time     time    well portray  black   sensitivity  dignity  sympathy    shallow ignorant reader      caricature   object  derision  their problem   Hopefully    mature enough  their lifetime  appreciate  book      greatest classic  American literature        wonder   reviewer  black Judy Lind ::: 1*.txt
+ 1545  ls REVIEWS2
+ 1546  time parallel -j 10 ./commonWords.sh {1} {2} ::: REVIEWS2/R109NJJ7M1WVSA.txt ::: 1*.txt
+ 1547  cat REVIEWS2/R109NJJ7M1WVSA.txt
+ 1548  for f in REVIEWS2/*; do sed -i '2,$ d' $f; done
+ 1549  Okay   know  plot    sense  rehash    book  generat  great deal  heat  very little light lately  been bann  some school district  attack  racist garbage    review  addres  question:   Huckleberry Finn   fact  racist bookThe charge  racism stem   liberal      word  describ    Some black parent  student  charg    book  humiliat  demean  AfricanAmerican   therefore  unfit   taught  school      been  racist  backlash   classroom  think    fault   reader rather    book Huckleberry Finn    Missouri    1830    true   time    narrator   13 year   semiliterate   refer  black   Nword because   never  heard  call anyth     been brought    black   slave  property  someth   human      know    their flight  freedom  escap slavery  Huck escap   drunken abusive father   transform   Huck realize       human      father  misse  children  warm  sensitive generou compassionate individual   Huck epiphany arrive      make  decision     rescue      captur  held  return  slavery     culture   born into  steal  slave   lowest  crime   perpetrator  condemn   eternal damnation     decision  risk hell  save   save    soul   Huck  risen above  upbring      friend      fellow human  Another charge  racism     Twain suppo stereotyp      portray  Twain   hardly   ignorant shuffl Uncle     prevalent  Gone    Wind  book  abundantly deserve  charge  racism       uneducat    nobody fool   dignity  nobility    face  adversity  evident throughout  book     Huckleberry Finn  racist book        time     time    well portray  black   sensitivity  dignity  sympathy    shallow ignorant reader      caricature   object  derision  their problem   Hopefully    mature enough  their lifetime  appreciate  book      greatest classic  American literature        wonder   reviewer  black Judy Linde uneducat    nobody fool   dignity  nobility    face  adversity  evident throughout  book     Huckleberry Finn  racist book        time     time    well portray  black   sensitivity  dignity  sympathy    shallow ignorant reader      caricature   object  derision  their problem   Hopefully    mature enough  their lifetime  appreciate  book      greatest classic  American literature        wonder   reviewer  black Judy Lind
+ 1550  cd REVIEWS2
+ 1551  ls
+ 1552  for f in 1*.txt; do comm -12 <(tr -s " " "\n" <  | sort) <(echo $p | tr " " "\n" | sort) | wc -l
+ 1553  cd ..
+ 1554  for f in 1*.txt; do comm -12 <(tr -s " " "\n" < REVIEWS2/R109NJJ7M1WVSA.txt | sort) <(tr -s " " "\n" < $f | sort) | wc -l; ; done
+ 1555  for f in 1*.txt; do comm -12 <(tr -s " " "\n" < REVIEWS2/R109NJJ7M1WVSA.txt | sort) <(tr -s " " "\n" < $f | sort) | wc -l; done
+ 1556  for f in 1*.txt; do comm -12 <(tr -s " " "\n" < REVIEWS2/R109NJJ7M1WVSA.txt | sort) <(tr -s " " "\n" < $f | sort) | wc -l; done | grep -E [01]
+ 1557  for f in 1*.txt; do comm -12 <(tr -s " " "\n" < REVIEWS2/R109NJJ7M1WVSA.txt | sort) <(tr -s " " "\n" < $f | sort) | wc -l; done | grep -E [01] | wc -l
+ 1558  for f in 1*.txt; do comm -12 <(tr -s " " "\n" < REVIEWS2/R109NJJ7M1WVSA.txt | sort) <(tr -s " " "\n" < $f | sort) | wc -l; done | wc -l
+ 1559  for f in REVIEWS2/*; do sed -i '2,$ d' $f; done
+ 1560  for f in REVIEWS2/R*txt; do time parallel -j 10 ./commonWords.sh {1} {2} ::: $f ::: 1*.txt; done
+ 1561  time for f in REVIEWS2/R*txt; do parallel -j 10 ./commonWords.sh {1} {2} ::: $f ::: 1*.txt; done
+ 1562  for f in REVIEWS2/*; do sed -i '2,$ d' $f; done
+ 1563  time for f in 1*.txt; do parallel -j 10 ./commonWords.sh {1} {2} ::: REVIEWS2/R*.txt ::: $f; done
+ 1564  vi commonWords.sh 
+ 1565  for f in REVIEWS2/*; do sed -i '2,$ d' $f; done
+ 1566  time parallel -j 10 ./commonWords.sh {1} {2} ::: REVIEWS2/R*.txt ::: 1*.txt
+ 1567  ls
+ 1568  vi commonWords.sh 
+ 1569  test=1467896911.txt
+ 1570  cp $test $test".tweets"
+ 1571  ls
+ 1572  rm *.tweets
+ 1573  ls
+ 1574  vi commonWords.sh 
+ 1575  `cat 1467896253.txt >> $test".tweets"
+ 1576  `cat 1467896253.txt` >> $test".tweets"
+ 1577  cat 1467896253.txt >> $test".tweets"
+ 1578  cat *.tw
+ 1579  cat *.tweets
+ 1580  cat 1467896253.txt
+ 1581  vi commonWords.sh 
+ 1582  for f in REVIEWS2/*; do sed -i '2,$ d' $f; done
+ 1583  time parallel -j 10 ./commonWords.sh {1} {2} ::: REVIEWS2/R*.txt ::: 1*.txt
+ 1584  vi commonWords.sh 
+ 1585  for f in REVIEWS2/*; do sed -i '2,$ d' $f; done
+ 1586  vi commonWords.sh 
+ 1587  ./commonWords.sh REVIEWS2/R1OJBOGT5D8Q1D.txt 
+ 1588  ls
+ 1589  ./commonWords.sh REVIEWS2/R1OJBOGT5D8Q1D.txt twitterbody1000 
+ 1590  cat REVIEWS2/R1OJBOGT5D8Q1D.txt
+ 1591  cat REVIEWS2/R1OJBOGT5D8Q1D.txt.tweets 
+ 1592  grep most REVIEWS2/R1OJBOGT5D8Q1D.txt
+ 1593  grep didnt REVIEWS2/R1OJBOGT5D8Q1D.txt
+ 1594  grep much REVIEWS2/R1OJBOGT5D8Q1D.txt
+ 1595  grep done REVIEWS2/R1OJBOGT5D8Q1D.txt
+ 1596  time parallel -j 10 ./commonWords.sh {1} twitterbody1000 ::: REVIEWS2/R*.txt
+ 1597  ls
+ 1598  mkdir REVIEWS3
+ 1599  ls REVIEWS2/
+ 1600  cat REVIEWS2/R1EOM8Q95MESS5.txt.tweets 
+ 1601  grep totally REVIEWS2/R1EOM8Q95MESS5.txt
+ 1602  grep comin REVIEWS2/R1EOM8Q95MESS5.txt
+ 1603  grep back REVIEWS2/R1EOM8Q95MESS5.txt
+ 1604  grep Lastnight REVIEWS2/R1EOM8Q95MESS5.txt
+ 1605  grep much REVIEWS2/R1EOM8Q95MESS5.txt
+ 1606  grep Lastnight twitter1000.csv 
+ 1607  comm -12 <REVIEWS2/R1EOM8Q95MESS5.txt <1468055266 | wc -l
+ 1608  comm -12 <REVIEWS2/R1EOM8Q95MESS5.txt <1468055266.txt | wc -l
+ 1609  ls
+ 1610  comm -12 <(tr -s " " "\n" < REVIEWS2/R1EOM8Q95MESS5.txt | sort) <(tr -s " " "\n" < 1468055266.txt | sort) | wc -l
+ 1611  comm -12 <(tr -s " " "\n" < REVIEWS2/R1EOM8Q95MESS5.txt | sort) <(tr -s " " "\n" < 1468055266.txt | sort)
+ 1612  cp -r REVIEWS2/R*.txt REVIEWS3/
+ 1613  ls REVIEWS3
+ 1614  time parallel -j 5 ./commonWords.sh {1} twitterbody1000 ::: REVIEWS2/R*.txt
+ 1615  rm *.tw*
+ 1616  time parallel -j 2 ./commonWords.sh {1} twitterbody1000 ::: REVIEWS2/R*.txt
+ 1617  ls REVIEWS3
+ 1618  time parallel -j 2 ./commonWords.sh {1} twitterbody1000 ::: REVIEWS3/R*.txt
+ 1619  ls REVIEWS3
+ 1620  cat RVFJEZZ01QP58.txt.tweets
+ 1621  cat REVIEWS3/RVFJEZZ01QP58.txt.tweets
+ 1622  grep save  REVIEWS3/RVFJEZZ01QP58.txt
+ 1623  grep time  REVIEWS3/RVFJEZZ01QP58.txt
+ 1624  ls
+ 1625  mv top100reviews least100reviews ../ 
+ 1626  ls
+ 1627  cd ..
+ 1628  ls
+ 1629  rm -rf assignment4 trainingandtestdata.zip training.1600000.processed.noemoticon.csv testdata.manual.2009.06.14.csv 
+ 1630  ls
+ 1631  mkdir assignment4
+ 1632  cd assignment4
+ 1633  script a4.txt
+ 1634  perl -pe 's/\x1b\[[0-9;]*[mG]//g' a4.txt > a4.txt.clean
+ 1635  tr -cd '\11\12\15\40-\176' < a4.txt.clean > a4.txt.clean2
+ 1636  sed -i "s///g" a4.txt.clean2
+ 1637  vi a4.txt.clean2
+ 1638  git init
+ 1639  git add a4.txt.clean2
+ 1640  git status
+ 1641  got commit -m "Assignment4"
+ 1642  git commit -m "Assignment4"
+ 1643  git remote add origin https://github.com/jihanyehia/assignment4.git
+ 1644  git branch -M main
+ 1645  git push -u origin main
+ 1646  exit
+ 1647  ls
+ 1648  vi randomsample.sh
+ 1649  chmod 777 randomsample.sh 
+ 1650  ./randomsample.sh 5 ../amazon_reviews_us_Books_v1_02.tsv
+ 1651  vi randomsample.sh 
+ 1652  ./randomsample.sh 5 amazon_reviews_us_Books_v1_02.tsv
+ 1653  vi randomsample.sh 
+ 1654  ./randomsample.sh 5 amazon_reviews_us_Books_v1_02.tsv
+ 1655  vi randomsample.sh 
+ 1656  wc -l amazon_reviews_us_Books_v1_02.tsv 
+ 1657  vi randomsample.sh 
+ 1658  ./randomsample.sh 5 amazon_reviews_us_Books_v1_02.tsv
+ 1659  vi randomsample.sh 
+ 1660  ./randomsample.sh 5 amazon_reviews_us_Books_v1_02.tsv
+ 1661  vi randomsample.sh 
+ 1662  ./randomsample.sh 5 amazon_reviews_us_Books_v1_02.tsv
+ 1663  wc -l amazon_reviews_us_Books_v1_02.tsv | cut -f1
+ 1664  cat amazon_reviews_us_Books_v1_02.tsv | wc -l
+ 1665  vi randomsample.sh 
+ 1666  ./randomsample.sh 5 amazon_reviews_us_Books_v1_02.tsv
+ 1667  vi randomsample.sh 
+ 1668  ./randomsample.sh 5 amazon_reviews_us_Books_v1_02.tsv
+ 1669  vi randomsample.sh 
+ 1670  ./randomsample.sh 5 amazon_reviews_us_Books_v1_02.tsv
+ 1671  vi randomsample.sh 
+ 1672  ./randomsample.sh 5 amazon_reviews_us_Books_v1_02.tsv
+ 1673  vi randomsample.sh 
+ 1674  ./randomsample.sh 5 amazon_reviews_us_Books_v1_02.tsv
+ 1675  vi randomsample.sh 
+ 1676  ./randomsample.sh 5 amazon_reviews_us_Books_v1_02.tsv
+ 1677  vi randomsample.sh 
+ 1678  ./randomsample.sh 5 amazon_reviews_us_Books_v1_02.tsv
+ 1679  vi randomsample.sh 
+ 1680  ./randomsample.sh 5 amazon_reviews_us_Books_v1_02.tsv
+ 1681  vi randomsample.sh 
+ 1682  ./randomsample.sh 5 amazon_reviews_us_Books_v1_02.tsv
+ 1683  vi randomsample.sh 
+ 1684  ./randomsample.sh 5 amazon_reviews_us_Books_v1_02.tsv
+ 1685  vi randomsample.sh 
+ 1686  ./randomsample.sh 5 amazon_reviews_us_Books_v1_02.tsv
+ 1687  vi randomsample.sh 
+ 1688  ./randomsample.sh 5 amazon_reviews_us_Books_v1_02.tsv
+ 1689  vi randomsample.sh 
+ 1690  x=5
+ 1691  totalLines=3105521
+ 1692  lines=$((100*$x/$totalLines))
+ 1693  echo $lines
+ 1694  lines=$(($totalLines*$x/100))
+ 1695  echo $lines
+ 1696  vi randomsample.sh 
+ 1697  ./randomsample.sh 5 amazon_reviews_us_Books_v1_02.tsv
+ 1698  vi randomsample.sh 
+ 1699  ./randomsample.sh 5 amazon_reviews_us_Books_v1_02.tsv
+ 1700  exit
+ 1701  vi randomsample.sh 
+ 1702  ls
+ 1703  vi randomsample.sh 
+ 1704  ./randomsample.sh 
+ 1705  ./randomsample.sh 5 amazon_reviews_us_Books_v1_02.tsv
+ 1706  vi randomsample.sh 
+ 1707  ./randomsample.sh 5 amazon_reviews_us_Books_v1_02.tsv
+ 1708  vi randomsample.sh 
+ 1709  ./randomsample.sh 5 amazon_reviews_us_Books_v1_02.tsv
+ 1710  vi randomsample.sh 
+ 1711  ./randomsample.sh 5 amazon_reviews_us_Books_v1_02.tsv
+ 1712  vi randomsample.sh 
+ 1713  ./randomsample.sh 5 amazon_reviews_us_Books_v1_02.tsv
+ 1714  vi randomsample.sh 
+ 1715  ./randomsample.sh 5 amazon_reviews_us_Books_v1_02.tsv
+ 1716  vi randomsample.sh 
+ 1717  ./randomsample.sh 5 amazon_reviews_us_Books_v1_02.tsv
+ 1718  vi randomsample.sh 
+ 1719  ./randomsample.sh 5 amazon_reviews_us_Books_v1_02.tsv
+ 1720  vi randomsample.sh 
+ 1721  ./randomsample.sh 5 amazon_reviews_us_Books_v1_02.tsv
+ 1722  vi randomsample.sh 
+ 1723  ./randomsample.sh 5 amazon_reviews_us_Books_v1_02.tsv
+ 1724  vi randomsample.sh 
+ 1725  ./randomsample.sh 5 amazon_reviews_us_Books_v1_02.tsv
+ 1726  vi randomsample.sh 
+ 1727  ./randomsample.sh 5 amazon_reviews_us_Books_v1_02.tsv
+ 1728  vi randomsample.sh 
+ 1729  ./randomsample.sh 5 amazon_reviews_us_Books_v1_02.tsv
+ 1730  vi randomsample.sh 
+ 1731  ./randomsample.sh 5 amazon_reviews_us_Books_v1_02.tsv
+ 1732  vi randomsample.sh 
+ 1733  ./randomsample.sh 1 amazon_reviews_us_Books_v1_02.tsv
+ 1734  screen
+ 1735  exit
+ 1736  screen -r
+ 1737  exit
+ 1738  ./randomsample.sh 1 amazon_reviews_us_Books_v1_02.tsv
+ 1739  ./randomsample.sh 1 amazon_reviews_us_Books_v1_02.tsv
+ 1740  script ws9.txt
+ 1741  vi ws9.txt 
+ 1742  screen -r
+ 1743  vi randomsample.sh 
+ 1744  ls
+ 1745  rm ws9.txt randomsample.sh 
+ 1746  ls
+ 1747  screen
+ 1748  exit
+ 1749  vi randomsample.sh
+ 1750  chmod 777 randomsample.sh 
+ 1751  ./randomsample.sh 1 ../amazon_reviews_us_Books_v1_02.tsv
+ 1752  mkdir worksheet9
+ 1753  cd worksheet9
+ 1754  script ws9.txt
+ 1755  vi ws9.txt 
+ 1756  head -10000 ../amazon_reviews_us_Books_v1_02.tsv > amazon_10000
+ 1757  ls
+ 1758  vi randomsample.sh
+ 1759  chmod 777 randomsample.sh 
+ 1760  ./randomsample.sh 
+ 1761  ./randomsample.sh 5 amazon_10000
+ 1762  wc -l amazon_reviews_us_Books_v1_02.tsv 
+ 1763  ls worksheet9
+ 1764  wc -l worksheet9/ws9.txt 
+ 1765  pwd
+ 1766  scp D:\Taimour Wehbe\Documents\Joujou\Bioinformatics\Fall 2021\CS 185C\Assignments and Worksheets\numbers.py yehia@f6linuxA9: /home/yehia/
+ 1767  grep "found in array" worksheet9/ws9.txt 
+ 1768  exit
+ 1769  screen -r
+ 1770  rm -rf worksheet9
+ 1771  ls
+ 1772  mkdir worksheet9
+ 1773  cd worksheet9
+ 1774  script ws9.txt
+ 1775  vi ws9.txt 
+ 1776  history > cmds.log
+ 1777  perl -pe 's/\x1b\[[0-9;]*[mG]//g' ws9.txt > ws9.txt.clean
+ 1778  tr -cd '\11\12\15\40-\176' < ws9.txt.clean > ws9.txt.clean2
+ 1779  sed -i "s///g" ws9.txt.clean2
+ 1780  vi ws9.txt.clean2
+ 1781  git init
+ 1782  git add ws9.txt.clean2
+ 1783  git add cmds.log 
+ 1784  git status
+ 1785  git commit -m "Worksheet 9"
+ 1786  git remote add origin https://github.com/jihanyehia/worksheet9.git
+ 1787  git branch -M main
+ 1788  git push -u origin main
+ 1789  exit
+ 1790  ls assignment4/
+ 1791  ls assignment4/REVIEWS
+ 1792  cat  assignment4/REVIEWS/R109NJJ7M1WVSA.txt
+ 1793  mkdir assignment5
+ 1794  cd assignment5
+ 1795  mkdir test1
+ 1796  mkdir test1/class1
+ 1797  mkdir test1/class2
+ 1798  cp -r ../assignment4/REVIEWS/*.txt test1/class1
+ 1799  cp -r ../assignment4/REVIEWS_UNHELPFUL/*.txt test1/class2
+ 1800  ls test1/class1
+ 1801  ls test1/class2
+ 1802  ls test1/class1
+ 1803  cd ..
+ 1804  ls
+ 1805  wget https://prdownloads.sourceforge.net/weka/weka-3-8-5-azul-zulu-linux.zip
+ 1806  ls
+ 1807  unzip weka-3-8-5-azul-zulu-linux.zip 
+ 1808  ls
+ 1809  cd weka-3-8-5/
+ 1810  ./weka.sh 
+ 1811  export CLASSPATH=$CLASSPATH:`pwd`/weka.jar:`pwd`/libsvm.jar
+ 1812  ./weka.sh 
+ 1813  java -jar weka.jar
+ 1814  exit
+ 1815  cd assignment5
+ 1816  ls
+ 1817  vi reviews_training.arff 
+ 1818  vi reviews.arff 
+ 1819  cd ../assignment4/REVIEWS
+ 1820  for f in *.txt; do cat $f >> ../all_reviews.txt; done
+ 1821  cd ..
+ 1822  wc -l all_reviews.txt 
+ 1823  vi all_reviews.txt 
+ 1824  for f in REVIEWS_UNHELPFUL/*.txt; do cat $f >> all_reviews.txt; done
+ 1825  wc -l all_reviews.txt 
+ 1826  sort all_reviews.txt | uniq -c | wc -l
+ 1827  tr -s " " "\n" all_reviews.txt 
+ 1828  tr -s " " "\n" < all_reviews.txt 
+ 1829  tr -s " " "\n" < all_reviews.txt >all_reviews_words
+ 1830  sort all_reviews_words | uniq -c | wc -l
+ 1831  for f in REVIEWS/*.txt; do cat $f >> help_reviews.txt; done
+ 1832  tr -s " " "\n" < help_reviews.txt >help_reviews_words
+ 1833  sort help_reviews_words | uniq -c | wc -l
+ 1834  ls
+ 1835  exit
+ 1836  cd weka-3-8-5/
+ 1837  export CLASSPATH=$CLASSPATH:`pwd`/weka.jar:`pwd`/libsvm.jar
+ 1838  ./weka.sh 
+ 1839  java -jar weka.jar
+ 1840  cd ../assignment5
+ 1841  ls
+ 1842  java weka.core.converters.TextDirectoryLoader -dir test1 > test1.arff
+ 1843  ls test1.arff 
+ 1844  head test1.arff 
+ 1845  vi test1.arff 
+ 1846  vim test1.arff 
+ 1847  history
+ 1848  cat /proc/meminfo 
+ 1849  java -Xmx1024m weka.filters.unsupervised.attribute.StringToWordVector
+ 1850  java -Xmx1024m weka.filters.unsupervised.attribute.StringToWordVector -i test1.arff -o test1_training.arff -M 2
+ 1851  ls
+ 1852  vi test1_training.arff 
+ 1853  grep -r beleiv test1/class1/ | grep bigger | grep both
+ 1854  grep -r beleiv test1/class1/ | grep bigger
+ 1855  grep -r beleiv test1/class1/
+ 1856  grep -r believ test1/class1/
+ 1857  grep -r believ test1/class1/ | grep bigger | grep both
+ 1858  vi test1_training.arff 
+ 1859  vi test1/class1/R109NJJ7M1WVSA.txt 
+ 1860  grep class2 test1_training.arff 
+ 1861  java -Xmx1024m
+ 1862  weka.classifiers.meta.ClassificationViaRegression -W weka.classifiers.trees.M5P -num-decimal-places 4
+ 1863  -t
+ 1864  text_example
+ 1865  _training.arff -d
+ 1866  text_example
+ 1867  weka.classifiers.meta.ClassificationViaRegression -W weka.classifiers.trees.M5P -num-decimal-places 4 -t test1_training.arff -d test1_training.model -c 1
+ 1868  java -Xmx1024m weka.classifiers.meta.ClassificationViaRegression -W weka.classifiers.trees.M5P -num-decimal-places 4 -t test1_training.arff -d test1_training.model -c 1
+ 1869  history
+ 1870  ls
+ 1871  cp -rp test1 test2
+ 1872  ls
+ 1873  vi text_binary_classify.sh
+ 1874  chmod 777 text_binary_classify.sh 
+ 1875  ./text_binary_classify.sh ./weka-3-8-5 test2
+ 1876  diff test1_training.arff test2_training.arff 
+ 1877  diff test1_training.model test2_training.model 
+ 1878  vi test2_training.model 
+ 1879  ls
+ 1880  mv test2 reviews
+ 1881  ll
+ 1882  mv reviews/class1/ reviews/helpful/
+ 1883  mv reviews/class2/ reviews/unhelpful/
+ 1884  ./text_binary_classify.sh ~/weka-3-8-5 reviews
+ 1885  java -jar weka.jar
+ 1886  cd ../weka
+ 1887  cd ../weka-3-8-5/
+ 1888  java -jar weka.jar
+ 1889  exit
+ 1890  mkdir REVIEWS
+ 1891  mkdir REVIEWS/helpful
+ 1892  mkdir REVIEWS/unhelpful
+ 1893  cp -r ../assignment4/REVIEWS/*.txt REVIEWS/helpful
+ 1894  cp -r ../assignment4/REVIEWS_UNHELPFUL/*.txt REVIEWS/unhelpful
+ 1895  ls REVIEWS/helpful/
+ 1896  ls REVIEWS/unhelpful/
+ 1897  cd ..
+ 1898  wget https://prdownloads.sourceforge.net/weka/weka-3-8-5-azul-zulu-linux.zip
+ 1899  unzip weka-3-8-5-azul-zulu-linux.zip 
+ 1900  cd weka-3-8-5/
+ 1901  export CLASSPATH=$CLASSPATH:`pwd`/weka.jar:`pwd`/libsvm.jar
+ 1902  cd ../assignment5
+ 1903  java weka.core.converters.TextDirectoryLoader -dir REVIEWS > REVIEWS.arff
+ 1904  vi REVIEWS.arff 
+ 1905  java -Xmx1024m weka.filters.unsupervised.attribute.StringToWordVector -i REVIEWS.arff -o REVIEWS_training.arff -M 2
+ 1906  vi REVIEWS_training.arff
+ 1907  java -Xmx1024m weka.classifiers.meta.ClassificationViaRegression -W weka.classifiers.trees.M5P -num-decimal-places 4 -t REVIEWS_training.arff -d REVIEWS_training.model -c 1
+ 1908  vi text_binary_classify.sh
+ 1909  chmod 777 text_binary_classify.sh 
+ 1910  ./text_binary_classify.sh ~/weka-3-8-5 REVIEWS
+ 1911  mkdir REVIEWS_TWEETS
+ 1912  mkdir REVIEWS_TWEETS/helpful
+ 1913  mkdir REVIEWS_TWEETS/unhelpful
+ 1914  cp -r ../assignment4/REVIEWS/*.txt.tweets REVIEWS_tweets/helpful
+ 1915  cp -r ../assignment4/REVIEWS/*.txt.tweets REVIEWS_TWEETS/helpful
+ 1916  cp -r ../assignment4/REVIEWS_UNHELPFUL/*.txt.tweets REVIEWS_tweets/unhelpful
+ 1917  cp -r ../assignment4/REVIEWS_UNHELPFUL/*.txt.tweets REVIEWS_TWEETS/unhelpful
+ 1918  ./text_binary_classify.sh ~/weka-3-8-5 REVIEWS_tweets
+ 1919  ./text_binary_classify.sh ~/weka-3-8-5 REVIEWS_TWEETS
+ 1920  ls
+ 1921  rm -rf weka-3-8-5 weka-3-8-5-azul-zulu-linux.zip wekafiles/ assignment5
+ 1922  ls
+ 1923  mkdir assignment5
+ 1924  cd assignment5
+ 1925  script a5.txt
+ 1926  perl -pe 's/\x1b\[[0-9;]*[mG]//g' a5.txt > a5.txt.clean
+ 1927  tr -cd '\11\12\15\40-\176' < a5.txt.clean > a5.txt.clean2
+ 1928  sed -i "s///g" a5.txt.clean2
+ 1929  vi a5.txt.clean2
+ 1930  git init
+ 1931  git add a5.txt.clean2
+ 1932  git add text_binary_classify.sh 
+ 1933  git status
+ 1934  git commit -m "Assignment 5"
+ 1935  git remote add origin https://github.com/jihanyehia/Assignment5.git
+ 1936  git branch -M main
+ 1937  git push -u origin main
+ 1938  exit
+ 1939  ls
+ 1940  vi numbers.sh
+ 1941  chmod 777 numbers.sh
+ 1942  ./ numbers.sh 
+ 1943  ./numbers.sh 
+ 1944  vi numbers.sh 
+ 1945  ./numbers.sh 
+ 1946  vi numbers.sh 
+ 1947  ./numbers.sh 
+ 1948  vi numbers.sh 
+ 1949  ./numbers.sh 
+ 1950  vi numbers.sh 
+ 1951  ./numbers.sh 
+ 1952  vi numbers.sh 
+ 1953  ./numbers.sh 
+ 1954  vi numbers.sh 
+ 1955  time ./numbers.sh 
+ 1956  vi numbers.sh 
+ 1957  time ./numbers.sh 
+ 1958  ls
+ 1959  pwd
+ 1960  ls
+ 1961  time python numbers.py 
+ 1962  cut -f9 amazon_reviews_us_Books_v1_02.tsv | head
+ 1963  time python3 numbers.py 
+ 1964  time cut -f9 amazon_reviews_us_Books_v1_02.tsv
+ 1965  time cut -f9 amazon_reviews_us_Books_v1_02.tsv > test
+ 1966  awk 'BEGIN{sum=0; count=0} {numbers[count++]=$9; sum+=$9}' amazon_reviews_us_Books_v1_02.tsv 
+ 1967  echo $sum
+ 1968  vi numbers.sh 
+ 1969  time ./numbers.sh 
+ 1970  vi numbers.sh 
+ 1971  time ./numbers.sh 
+ 1972  vi numbers.sh 
+ 1973  time ./numbers.sh 
+ 1974  vi numbers.sh 
+ 1975  time ./numbers.sh 
+ 1976  vi numbers.sh 
+ 1977  time ./numbers.sh 
+ 1978  vi numbers.sh 
+ 1979  time ./numbers.sh 
+ 1980  vi numbers.
+ 1981  ls
+ 1982  vi numbers.sh 
+ 1983  time ./numbers.sh 
+ 1984  vi numbers.sh 
+ 1985  time ./numbers.sh 
+ 1986  time python3 numbers.py 
+ 1987  rm numbers .sh
+ 1988  rm numbers.sh
+ 1989  rm numbers.py 
+ 1990  ls
+ 1991  head test
+ 1992  rm test
+ 1993  ls
+ 1994  exit
+ 1995  cp ../amazon_reviews_us_Books_v1_02.tsv ./
+ 1996  ls
+ 1997  time python3 numbers.py 
+ 1998  vi numbers.sh
+ 1999  chmod 777 numbers.sh 
+ 2000  time ./numbers.sh
+ 2001  history > cmds.log
